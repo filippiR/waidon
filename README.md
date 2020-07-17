@@ -2,13 +2,13 @@
 Projeto criado por mim para registrar o que eu fiz durante o dia, eu tinha um grande problema de não lembrar o que eu fiz durante o dia na reunião diaria da empresa então eu fiz esse software só para registrar as atividades e no final do dia eu saber o que falar.
 
 Criar sistema para registrar todas as atividades realizadas no dia, desde reunião a verificações e implementações
-[ ] criar aplicação
-[ ] modelar tabelas
-[ ] adicionar layout
-[ ] criar autenticação
-[ ] criar telas de cadastro
-[ ] analisar como criar sistema pomodoro integrado com alertas
-[ ] criar sistema de pomodoro para que o sistema 
+- [x] criar aplicação
+- [x] modelar tabelas
+- [x] adicionar layout
+- [x] criar autenticação
+- [x] criar telas de cadastro
+- [ ] analisar como criar sistema pomodoro integrado com alertas
+- [ ] criar sistema de pomodoro para que o sistema 
 
 
 # CakePHP Application Skeleton
