@@ -9,7 +9,8 @@ Criar sistema para registrar todas as atividades realizadas no dia, desde reuni√
 - [x] criar telas de cadastro
 - [ ] analisar como criar sistema pomodoro integrado com alertas
 - [ ] criar sistema de pomodoro para que o sistema 
-
+- [ ] Criar API basica
+- [ ] Planejar sistema de planejamento de sprint para integrar
 
 # CakePHP Application Skeleton
 
