@@ -1,3 +1,16 @@
+# Sobre o Projeto
+Projeto criado por mim para registrar o que eu fiz durante o dia, eu tinha um grande problema de não lembrar o que eu fiz durante o dia na reunião diaria da empresa então eu fiz esse software só para registrar as atividades e no final do dia eu saber o que falar.
+
+Criar sistema para registrar todas as atividades realizadas no dia, desde reunião a verificações e implementações
+[] criar aplicação
+[] modelar tabelas
+[] adicionar layout
+[] criar autenticação
+[] criar telas de cadastro
+[] analisar como criar sistema pomodoro integrado com alertas
+[] criar sistema de pomodoro para que o sistema 
+
+
 # CakePHP Application Skeleton
 
 [![Build Status](https://img.shields.io/github/workflow/status/cakephp/app/CakePHP%20App%20CI/master?style=flat-square)](https://github.com/cakephp/app/actions)
