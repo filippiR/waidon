@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Activity $activity
@@ -17,10 +18,10 @@
             <fieldset>
                 <legend><?= __('Add Activity') ?></legend>
                 <?php
-                    echo $this->Form->control('description');
-                    echo $this->Form->control('origin');
-                    echo $this->Form->control('company_id', ['options' => $companies, 'empty' => true]);
-                    echo $this->Form->control('system_id', ['options' => $systems, 'empty' => true]);
+                echo $this->Form->control('description');
+                echo $this->Form->control('origin');
+                echo $this->Form->control('company_id', ['options' => $companies, 'empty' => true, 'default' => $companyDefaultId]);
+                echo $this->Form->control('system_id', ['options' => $systems, 'empty' => true]);
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

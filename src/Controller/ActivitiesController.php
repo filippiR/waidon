@@ -69,7 +69,8 @@ class ActivitiesController extends AppController
      * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
      */
     public function add()
-    {
+    {   
+        $companyDefaultId = $this->request->getQuery('company_id');
         $activity = $this->Activities->newEmptyEntity();
         if ($this->request->is('post')) {
             $activity = $this->Activities->patchEntity($activity, $this->request->getData());
@@ -82,7 +83,7 @@ class ActivitiesController extends AppController
         }
         $companies = $this->Activities->Companies->find('list', ['limit' => 200]);
         $systems = $this->Activities->Systems->find('list', ['limit' => 200]);
-        $this->set(compact('activity', 'companies', 'systems'));
+        $this->set(compact('activity', 'companies', 'systems','companyDefaultId'));
     }
 
     /**
