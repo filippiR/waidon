@@ -7,10 +7,10 @@
 ?>
 <div class="activities index content">
     <?= $this->Html->link(__('Nova Atividade'), ['action' => 'add', '?' => ['company_id' => $company_id]], ['class' => 'button float-right']) ?>
-    <h3><?= __('Activities') ?></h3>
+    <h4 class="heading"><?= __('Ações') ?></h4>
     <?= $this->Form->create(null, ['type' => 'GET']) ?>
     <?= $this->Form->input('created', ['label' => 'DIA', 'type' => 'date', 'value' => $query]) ?>
-    <?= $this->Form->input('company_id', ['label' => 'Empresa','empty'=>' ', 'type' => 'select', 'options' => $companies, 'default' => $company_id]) ?>
+    <?= $this->Form->input('company_id', ['label' => 'Empresa', 'empty' => ' ', 'type' => 'select', 'options' => $companies, 'default' => $company_id]) ?>
     <?= $this->Form->input('inlist', ['label' => 'Em Lista', 'type' => 'checkbox', 'value' => $inlist]) ?> Em Lista
     <?= $this->Form->submit('Buscar') ?>
     <?= $this->Form->end(); ?>
@@ -19,11 +19,11 @@
             <thead>
                 <tr>
                     <th><?= $this->Paginator->sort('id') ?></th>
-                    <th><?= $this->Paginator->sort('description','Descrição') ?></th>
-                    <th><?= $this->Paginator->sort('origin','Origem') ?></th>
-                    <th><?= $this->Paginator->sort('company_id','Empresa') ?></th>
-                    <th><?= $this->Paginator->sort('system_id','Sistema') ?></th>
-                    <th><?= $this->Paginator->sort('created','Criado em') ?></th>
+                    <th><?= $this->Paginator->sort('description', 'Descrição') ?></th>
+                    <th><?= $this->Paginator->sort('origin', 'Origem') ?></th>
+                    <th><?= $this->Paginator->sort('company_id', 'Empresa') ?></th>
+                    <th><?= $this->Paginator->sort('system_id', 'Sistema') ?></th>
+                    <th><?= $this->Paginator->sort('created', 'Criado em') ?></th>
                     <th class="actions"><?= __('Ações') ?></th>
                 </tr>
             </thead>
@@ -48,12 +48,12 @@
     </div>
     <div class="paginator">
         <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
+            <?= $this->Paginator->first('<< ' . __('Primeira')) ?>
+            <?= $this->Paginator->prev('< ' . __('anterior')) ?>
             <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
+            <?= $this->Paginator->next(__('proxima') . ' >') ?>
+            <?= $this->Paginator->last(__('última') . ' >>') ?>
         </ul>
-        <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
+        <p><?= $this->Paginator->counter(__('Pagina {{page}} de {{pages}}, mostrando {{current}} registro(s) de um total de {{count}}')) ?></p>
     </div>
 </div>
