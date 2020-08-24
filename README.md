@@ -12,7 +12,7 @@ Criar sistema para registrar todas as atividades realizadas no dia, desde reuni�
 - [ ] Criar API basica
 - [ ] Planejar sistema de planejamento de sprint para integrar
 
-## Installation
+## Instalação
 
 1. Baixe o [Composer](https://getcomposer.org/doc/00-intro.md) or update `composer self-update`.
 2. Rode o comando `php composer.phar install` na pasta rais do projeto.
@@ -22,7 +22,7 @@ Se o composer estiver instalado globalmente rode
 ```bash
 composer install
 ```
-## Configuration
+## Configuração
 
 Leia e edite o arquivo de configuração `config/app_local.php` e configure a 
 `'Database'` outras configurações importantes podem ser feitas em `config/app.php`.
