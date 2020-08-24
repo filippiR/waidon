@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Controller;
@@ -18,25 +19,31 @@ class ActivitiesController extends AppController
      */
     public function index()
     {
-        $query = $this->request->getQuery('created');
+        $created = $this->request->getQuery('created');
+        $company_id = $this->request->getQuery('company_id');
         $inlist = $this->request->getQuery('inlist');
-        $date = !empty($query)?$query:date('Y-m-d');
-        $inList = !empty($inlist)?$inlist:false;
-         
-        $now = $date.' 00:00:00';
-        $endOfDay = $date.' 23:59:59';
+        $date = !empty($created) ? $created : date('Y-m-d');
+        $inList = !empty($inlist) ? $inlist : false;
+
+        $now = $date . ' 00:00:00';
+        $endOfDay = $date . ' 23:59:59';
         $query = $date;
+        $conditions = ['Activities.created >=' => $now, 'Activities.created <=' => $endOfDay];
+
+        if(!empty($company_id)){
+            $conditions['Activities.company_id'] = $company_id;
+        }
+
         $this->paginate = [
             'contain' => ['Companies', 'Systems', 'Users'],
-            'conditions'=> ['Activities.created >='=>$now, 'Activities.created <='=>$endOfDay]
+            'conditions' => $conditions
         ];
-        
+
         $activities = $this->paginate($this->Activities);
-        
-        $this->set(compact('activities','query','inlist'));
-        if($inlist==true)
+        $companies = $this->Activities->Companies->find('list');
+        $this->set(compact('activities', 'query', 'inlist','companies','company_id'));
+        if ($inlist == true)
             $this->render('activities_in_list');
-        
     }
 
 

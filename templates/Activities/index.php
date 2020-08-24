@@ -5,10 +5,11 @@
  */
 ?>
 <div class="activities index content">
-    <?= $this->Html->link(__('New Activity'), ['action' => 'add'], ['class' => 'button float-right']) ?>
+    <?= $this->Html->link(__('Nova Atividade'), ['action' => 'add'], ['class' => 'button float-right']) ?>
     <h3><?= __('Activities') ?></h3>
     <?= $this->Form->create(null, ['type'=>'GET']) ?>
     <?= $this->Form->input('created',['label'=>'DIA','type'=>'date', 'value'=>$query]) ?>
+    <?= $this->Form->input('company_id',['label'=>'Empresa','type'=>'select','options'=>$companies, 'default'=>$company_id]) ?>
     <?= $this->Form->input('inlist',['label'=>'Em Lista','type'=>'checkbox', 'value'=>$inlist]) ?>  Em Lista
     <?= $this->Form->submit('Buscar') ?>
     <?= $this->Form->end(); ?>
