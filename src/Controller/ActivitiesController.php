@@ -69,7 +69,7 @@ class ActivitiesController extends AppController
      * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
      */
     public function add()
-    {   
+    {
         $companyDefaultId = $this->request->getQuery('company_id');
         $activity = $this->Activities->newEmptyEntity();
         if ($this->request->is('post')) {
@@ -77,7 +77,7 @@ class ActivitiesController extends AppController
             if ($this->Activities->save($activity)) {
                 $this->Flash->success(__('The activity has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'index','?'=>['company_id'=>$activity->company_id]]);
             }
             $this->Flash->error(__('The activity could not be saved. Please, try again.'));
         }
@@ -95,6 +95,8 @@ class ActivitiesController extends AppController
      */
     public function edit($id = null)
     {
+      $this->loadComponent('Redirect');
+      $this->Redirect->saveReferer();
         $activity = $this->Activities->get($id, [
             'contain' => [],
         ]);
@@ -103,7 +105,7 @@ class ActivitiesController extends AppController
             if ($this->Activities->save($activity)) {
                 $this->Flash->success(__('The activity has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect($this->Redirect->getRedirectUrlByParams());
             }
             $this->Flash->error(__('The activity could not be saved. Please, try again.'));
         }
@@ -123,14 +125,16 @@ class ActivitiesController extends AppController
      */
     public function delete($id = null)
     {
+      $this->loadComponent('Redirect');
+      $this->Redirect->saveReferer();
+      $activity = $this->Activities->get($id);
         $this->request->allowMethod(['post', 'delete']);
-        $activity = $this->Activities->get($id);
         if ($this->Activities->delete($activity)) {
             $this->Flash->success(__('The activity has been deleted.'));
         } else {
             $this->Flash->error(__('The activity could not be deleted. Please, try again.'));
         }
 
-        return $this->redirect(['action' => 'index']);
+        return $this->redirect($this->Redirect->getRedirectUrlByParams());
     }
 }

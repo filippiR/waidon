@@ -48,7 +48,7 @@ $cakeDescription = 'Waidon: What are you doing now';
            <?= $this->Html->link('Sistemas',['controller'=>'Systems', 'action'=>'index']) ?>
            <?= $this->Html->link('Usuarios',['controller'=>'Users', 'action'=>'index']) ?>
            <?= $this->Html->link('Empresas',['controller'=>'Companies', 'action'=>'index']) ?>
-           <?= $this->Html->link('Sair',['controller'=>'Users', 'action'=>'logout']) ?>
+           <?= $this->Html->link('Sair',['controller'=>'Users', 'action'=>'logout'],['class'=>'button button-outline']) ?>
         <?php endif; ?>
         </div>
     </nav>
