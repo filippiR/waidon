@@ -12,10 +12,7 @@ namespace App\Controller;
  */
 class UsersController extends AppController
 {
-    public function beforeFilter(\Cake\Event\EventInterface $event){
-        $this->Auth->allow(['add']);
-        parent::beforeFilter($event);
-    }
+  
     /**
      * Index method
      *
