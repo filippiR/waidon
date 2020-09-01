@@ -28,9 +28,13 @@ class ActivitiesController extends AppController
         $now = $date . ' 00:00:00';
         $endOfDay = $date . ' 23:59:59';
         $query = $date;
-        $conditions = ['Activities.created >=' => $now, 'Activities.created <=' => $endOfDay];
+        $conditions = [
+            'Activities.created >=' => $now,
+            'Activities.created <=' => $endOfDay,
+            'Activities.user_id' => $this->request->getAttribute('identity')->get('id')
+        ];
 
-        if(!empty($company_id)){
+        if (!empty($company_id)) {
             $conditions['Activities.company_id'] = $company_id;
         }
 
@@ -41,7 +45,7 @@ class ActivitiesController extends AppController
 
         $activities = $this->paginate($this->Activities);
         $companies = $this->Activities->Companies->find('list');
-        $this->set(compact('activities', 'query', 'inlist','companies','company_id'));
+        $this->set(compact('activities', 'query', 'inlist', 'companies', 'company_id'));
         if ($inlist == true)
             $this->render('activities_in_list');
     }
@@ -77,13 +81,13 @@ class ActivitiesController extends AppController
             if ($this->Activities->save($activity)) {
                 $this->Flash->success(__('The activity has been saved.'));
 
-                return $this->redirect(['action' => 'index','?'=>['company_id'=>$activity->company_id]]);
+                return $this->redirect(['action' => 'index', '?' => ['company_id' => $activity->company_id]]);
             }
             $this->Flash->error(__('The activity could not be saved. Please, try again.'));
         }
         $companies = $this->Activities->Companies->find('list', ['limit' => 200]);
         $systems = $this->Activities->Systems->find('list', ['limit' => 200]);
-        $this->set(compact('activity', 'companies', 'systems','companyDefaultId'));
+        $this->set(compact('activity', 'companies', 'systems', 'companyDefaultId'));
     }
 
     /**
@@ -95,8 +99,8 @@ class ActivitiesController extends AppController
      */
     public function edit($id = null)
     {
-      $this->loadComponent('Redirect');
-      $this->Redirect->saveReferer();
+        $this->loadComponent('Redirect');
+        $this->Redirect->saveReferer();
         $activity = $this->Activities->get($id, [
             'contain' => [],
         ]);
@@ -125,9 +129,9 @@ class ActivitiesController extends AppController
      */
     public function delete($id = null)
     {
-      $this->loadComponent('Redirect');
-      $this->Redirect->saveReferer();
-      $activity = $this->Activities->get($id);
+        $this->loadComponent('Redirect');
+        $this->Redirect->saveReferer();
+        $activity = $this->Activities->get($id);
         $this->request->allowMethod(['post', 'delete']);
         if ($this->Activities->delete($activity)) {
             $this->Flash->success(__('The activity has been deleted.'));

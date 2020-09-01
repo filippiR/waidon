@@ -46,7 +46,7 @@ $cakeDescription = 'Waidon: What are you doing now';
         <?php if($this->getRequest()->getAttribute('identity')!=null): ?>
            <?= $this->Html->link('Atividades',['controller'=>'Activities', 'action'=>'index']) ?>
            <?= $this->Html->link('Sistemas',['controller'=>'Systems', 'action'=>'index']) ?>
-           <?= $this->Html->link('Usuarios',['controller'=>'Users', 'action'=>'index']) ?>
+           <?php //= $this->Html->link('Usuarios',['controller'=>'Users', 'action'=>'index']) ?>
            <?= $this->Html->link('Empresas',['controller'=>'Companies', 'action'=>'index']) ?>
            <?= $this->Html->link('Sair',['controller'=>'Users', 'action'=>'logout'],['class'=>'button button-outline']) ?>
         <?php endif; ?>
