@@ -12,6 +12,10 @@ namespace App\Controller;
  */
 class UsersController extends AppController
 {
+    public function beforeFilter(\Cake\Event\EventInterface $event){
+        $this->Auth->allow(['add']);
+        parent::beforeFilter($event);
+    }
     /**
      * Index method
      *
@@ -47,14 +51,16 @@ class UsersController extends AppController
      */
     public function add()
     {
-        $this->Authorization->skipAuthorization();
+        $this->loadComponent('Redirect');
+        $this->Redirect->saveReferer();
+        // $this->Authorization->skipAuthorization();
         $user = $this->Users->newEmptyEntity();
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect($this->Redirect->getRedirectUrlByParams(['action' => 'index']));
             }
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
