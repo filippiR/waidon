@@ -44,7 +44,7 @@ class ActivitiesController extends AppController
         ];
 
         $activities = $this->paginate($this->Activities);
-        $companies = $this->Activities->Companies->find('list');
+        $companies = $this->Activities->Companies->find('list',['conditions' => ['Company.user_id' =>$this->request->getAttribute('identity')->get('id')]]);
         $this->set(compact('activities', 'query', 'inlist', 'companies', 'company_id'));
         if ($inlist == true)
             $this->render('activities_in_list');
@@ -85,8 +85,8 @@ class ActivitiesController extends AppController
             }
             $this->Flash->error(__('The activity could not be saved. Please, try again.'));
         }
-        $companies = $this->Activities->Companies->find('list', ['limit' => 200]);
-        $systems = $this->Activities->Systems->find('list', ['limit' => 200]);
+        $companies = $this->Activities->Companies->find('list',['conditions' => ['Company.user_id' =>$this->request->getAttribute('identity')->get('id')]]);
+        $systems = $this->Activities->Systems->find('list', ['conditions' => ['Systems.user_id' =>$this->request->getAttribute('identity')->get('id')]]);
         $this->set(compact('activity', 'companies', 'systems', 'companyDefaultId'));
     }
 
@@ -113,8 +113,8 @@ class ActivitiesController extends AppController
             }
             $this->Flash->error(__('The activity could not be saved. Please, try again.'));
         }
-        $companies = $this->Activities->Companies->find('list', ['limit' => 200]);
-        $systems = $this->Activities->Systems->find('list', ['limit' => 200]);
+        $companies = $this->Activities->Companies->find('list',['conditions' => ['Company.user_id' =>$this->request->getAttribute('identity')->get('id')]]);
+        $systems = $this->Activities->Systems->find('list', ['conditions' => ['Systems.user_id' =>$this->request->getAttribute('identity')->get('id')]]);
         $this->set(compact('activity', 'companies', 'systems'));
 
         $this->render('add');
