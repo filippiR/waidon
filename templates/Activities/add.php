@@ -22,6 +22,9 @@
                 echo $this->Form->control('origin');
                 echo $this->Form->control('company_id', ['options' => $companies, 'empty' => true, 'default' => isset($companyDefaultId)?$companyDefaultId:$activity->company_id]);
                 echo $this->Form->control('system_id', ['options' => $systems, 'empty' => true]);
+                if($activity->id!=null){
+                  echo $this->Form->control('created',['type'=>'datetime']);
+                }
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>
