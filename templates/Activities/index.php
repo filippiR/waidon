@@ -10,6 +10,7 @@
     <h4 class="heading"><?= __('Ações') ?></h4>
     <?= $this->Form->create(null, ['type' => 'GET']) ?>
     <?= $this->Form->input('created', ['label' => 'DIA', 'type' => 'date', 'value' => $query]) ?>
+    <?= $this->Form->input('created_end', ['label' => 'DIA FINAL', 'type' => 'date', 'value' => $createdEnd]) ?>
     <?= $this->Form->input('company_id', ['label' => 'Empresa', 'empty' => ' ', 'type' => 'select', 'options' => $companies, 'default' => $company_id]) ?>
     <?= $this->Form->input('inlist', ['label' => 'Em Lista', 'type' => 'checkbox', 'value' => $inlist]) ?> Em Lista
     <?= $this->Form->submit('Buscar') ?>

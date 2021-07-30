@@ -20,19 +20,25 @@ class ActivitiesController extends AppController
     public function index()
     {
         $created = $this->request->getQuery('created');
+        $createdEnd = $this->request->getQuery('created_end');
         $company_id = $this->request->getQuery('company_id');
         $inlist = $this->request->getQuery('inlist');
         $date = !empty($created) ? $created : date('Y-m-d');
         $inList = !empty($inlist) ? $inlist : false;
 
         $now = $date . ' 00:00:00';
-        $endOfDay = $date . ' 23:59:59';
+        if($createdEnd==''){
+            $endOfDay = $date . ' 23:59:59';
+        }else{
+            $endOfDay = $createdEnd.' 23:59:59';
+        }
         $query = $date;
         $conditions = [
             'Activities.created >=' => $now,
             'Activities.created <=' => $endOfDay,
             'Activities.user_id' => $this->request->getAttribute('identity')->get('id')
         ];
+
 
         if (!empty($company_id)) {
             $conditions['Activities.company_id'] = $company_id;
@@ -45,7 +51,7 @@ class ActivitiesController extends AppController
 
         $activities = $this->paginate($this->Activities);
         $companies = $this->Activities->Companies->find('list',['conditions' => ['Companies.user_id' =>$this->request->getAttribute('identity')->get('id')]]);
-        $this->set(compact('activities', 'query', 'inlist', 'companies', 'company_id'));
+        $this->set(compact('activities', 'query', 'inlist', 'companies', 'company_id','createdEnd'));
         if ($inlist == true)
             $this->render('activities_in_list');
     }
