@@ -6,7 +6,7 @@
  */
 ?>
 <div class="activities index content">
-    <?= $this->Html->link(__('Nova Atividade'), ['action' => 'add', '?' => ['company_id' => $company_id]], ['class' => 'button float-right']) ?>
+    <?= $this->Html->link(__('Nova Atividade'), ['action' => 'add', '?' => ['company_id' => $company_id]], ['accesskey'=>'n','class' => 'button float-right']) ?>
     <h4 class="heading"><?= __('Ações') ?></h4>
     <?= $this->Form->create(null, ['type' => 'GET']) ?>
     <?= $this->Form->input('created', ['label' => 'DIA', 'type' => 'date', 'value' => $query]) ?>
